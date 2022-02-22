@@ -1,0 +1,16 @@
+<div *ngIf="error">
+  <mat-dialog-content> email or password incorect </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Ok</button>
+  </mat-dialog-actions>
+</div>
+<div *ngIf="saved">
+  <mat-dialog-content> Saved! </mat-dialog-content>
+  <button class="mat-raised-button" (click)="close()">OK</button>
+</div>
+
+<div *ngIf="errorSave">
+  <mat-dialog-content> error!!! not saved!! </mat-dialog-content>
+  <button class="mat-raised-button" (click)="close()">OK</button>
+</div>

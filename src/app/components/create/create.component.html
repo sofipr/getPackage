@@ -1,0 +1,95 @@
+<div class="form-create">
+    <form [formGroup]="createForm">
+      <mat-form-field>
+        <input matInput placeholder="Enter your Name" formControlName="name" required>
+        <mat-error *ngIf="!createForm.controls['name'].valid">Please enter valid name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+         <input matInput placeholder="Enter your phone" formControlName="phone" required>
+         
+         <mat-error *ngIf="!createForm.controls['phone'].valid">Please enter phone</mat-error>
+        </mat-form-field><br/>
+
+        <mat-form-field>
+            <input matInput placeholder="Enter your Address" formControlName="address" required>
+            <mat-error *ngIf="!createForm.controls['address'].valid">Please enter valid address</mat-error>
+          </mat-form-field>
+    
+
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" (selectionChange)="cityChange()">
+              <mat-option [value]="city.enName" *ngFor="let city of cities"
+                >{{ city.enName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Enter receiver Name" formControlName="receiverName" required>
+            <mat-error *ngIf="!createForm.controls['receiverName'].valid">Please enter valid Receiver name</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Enter receiver phone" formControlName="receiverPhone" required>
+            <mat-error *ngIf="!createForm.controls['receiverPhone'].valid">Please enter phone</mat-error>
+           </mat-form-field><br/>
+
+           
+           <mat-form-field>
+            <input matInput placeholder="Enter receiver Address" formControlName="receiverAddress" required>
+            <mat-error *ngIf="!createForm.controls['receiverAddress'].valid">Please enter valid address</mat-error>
+          </mat-form-field>
+    
+
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select formControlName="receiverCity" (selectionChange)="cityChange()">
+              <mat-option [value]="city.enName" *ngFor="let city of cities"
+                >{{ city.enName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              readonly
+              [matDatepicker]="picker"
+              placeholder="Date of Delivery"
+              formControlName="dod"
+              (dateChange)="date($event)"
+              [min]="minDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker #picker  
+            
+            ></mat-datepicker>
+            <!-- error -->
+            <mat-error *ngIf="errorHandling('dod', 'required')">
+              Please enter <strong>date of delivery</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Time</mat-label>
+            <mat-select formControlName="receiverTime">
+              <mat-option [value]="time" *ngFor="let time of times"
+                >{{ time }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput  placeholder="Price without vat" formControlName="price"  [readonly]=true>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput  placeholder="Price without vat" formControlName="priceWithVat"  [readonly]=true >
+          </mat-form-field>
+    </form>
+
+    <button type="submit" mat-raised-button color="warn"  [disabled]="!visible" (click)="onSubmit()">
+        submit
+      </button>
+  </div>
